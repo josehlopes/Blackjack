@@ -24,7 +24,7 @@ public class Jogo {
         Scanner scanner2 = new Scanner(System.in); // Scanner para float
         Scanner scanner3 = new Scanner(System.in); // Scanner para char
         int rodada = 0;
-        boolean jogoIniciado = true; // boolean para jogoIniciadoar ou fechar o jogo
+        boolean jogoIniciado = true; // boolean para jogo Iniciar ou fechar o jogo
 
         // Menu inicial
         System.out.println("Bem vindo ao Blackjack!\n" +
@@ -38,17 +38,19 @@ public class Jogo {
 
                 if (jogoIniciado == true) { // Comaçando o jogo com a variavel booleana true
 
-                    blackjack.iniciarJogo(player, dealer);
-                    rodada++; // Rodada 1 após inicio do jogo
-                    System.out.println("Mão do jogador: " + player.getMao());
-                    System.out.println("Mão do dealer: " + dealer.getMao());
-                    System.out.println("Quantidade de cartas restantes é: " + blackjack.getBaralho().getCartas().size());
-                    System.out.println("Rodada atual: " + rodada);
                     System.out.println("Quanto você deseja apostar: ");
                     float aposta = scanner2.nextFloat();
                     player.setSaldo(aposta);
                     System.out.println("Sua aposta : " + player.getSaldo());
                     System.out.println("Aposta inicial do Dealer: " + dealer.getSaldo());
+                    blackjack.iniciarJogo(player, dealer);
+                    rodada++;
+                    System.out.println("Mão do jogador: " + player.getMao());
+                    System.out.println("Mão do dealer: " + dealer.getMao());
+                    System.out
+                            .println("Quantidade de cartas restantes é: " + blackjack.getBaralho().getCartas().size());
+                    System.out.println("Rodada atual: " + rodada);
+
                     boolean maoDoDealer = blackjack.Verificar_As(dealer.getMao());
 
                     if (maoDoDealer) {
@@ -97,12 +99,32 @@ public class Jogo {
 
                             break;
 
-                        case 2:
+                        case 2: // Chamar Stand
                             rodada++;
-                            // Chamar Stand
-                        case 3:
-                            rodada++;
-                            // Chamar double
+                            System.out.println("Você passou a rodada!");
+                            System.out.println("Mão do jogador: " + player.getMao());
+                            System.out.println("Soma da mão do jogador: " + blackjack.Contar_mao(player.getMao()));
+                            break;
+                        case 3: // Chamar double
+                            if (rodada == 1) {
+                                rodada++;
+                                player.setSaldo(player.getSaldo() * 2);
+                                System.out.println("Você dobra a aposta e compra uma carta.");
+                                qntCartasCompradas = 1;
+                                blackjack.Hit(player, qntCartasCompradas);
+                                System.out.println("Mão do jogador: " + player.getMao());
+                                System.out.println("Saldo atual:" + player.getSaldo());
+
+                                if (blackjack.Contar_mao(player.getMao()) > 21) {
+                                    System.out.println("Você perdeu!");
+                                    iniciar = 2;
+                                }
+                            } else {
+                                rodada++;
+                                System.out.println("Não foi possível realizar a ação");
+                            }
+
+                            break;
                         case 4:
                             rodada++;
                             // Chamar split
