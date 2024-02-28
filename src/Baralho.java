@@ -41,11 +41,13 @@ public class Baralho {
         cartas.remove(posicao);
     }
 
-    public void distribuir(Jogador j, int qtd) { // Manda a carta para mão do jogador e remove do baralho
+    public void distribuir(Jogador j, int qtd, int indice) { // Manda a carta para mão do jogador e remove do baralho
+        List<List<Carta>> maosDoJogador;
         for (int i = 0; i < qtd; i++) {
             int carta = new Random().nextInt(cartas.size());
             Carta c = cartas.remove(carta);
-            j.getMao().add(c);
+            List<Carta> mao = maosDoJogador.get(indice);
+            mao.add(c);
         }
     }
 

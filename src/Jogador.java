@@ -10,23 +10,23 @@ import java.util.List;
 
 public class Jogador {
 
-    private List<Carta> mao; //Lista de cartas privada do jogador (Mão)
-    private float saldo; //Saldo de aposta do jogador
+    private List<List<Carta>> maos; // Lista de cartas privada do jogador (Mão)
+    private float saldo; // Saldo de aposta do jogador
 
     public Jogador(float valor) {
-        this.mao = new ArrayList<>(); // Inicialize a lista mao com a lista passada como argumento
+        this.maos = new ArrayList<>(); // Inicialize a lista mao com a lista passada como argumento
         this.saldo = valor;
     }
-    
-    public List<Carta> getMao() {
-        return mao;
+
+    public List<List<Carta>> getMaos() {
+        return maos;
     }
 
     public float getSaldo() {
         return saldo;
     }
+
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
 }
-

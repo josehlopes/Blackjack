@@ -45,13 +45,13 @@ public class Jogo {
                     System.out.println("Aposta inicial do Dealer: " + dealer.getSaldo());
                     blackjack.iniciarJogo(player, dealer);
                     rodada++;
-                    System.out.println("Mão do jogador: " + player.getMao());
-                    System.out.println("Mão do dealer: " + dealer.getMao());
+                    System.out.println("Mão do jogador: " + player.getMaos());
+                    System.out.println("Mão do dealer: " + dealer.getMaos());
                     System.out
                             .println("Quantidade de cartas restantes é: " + blackjack.getBaralho().getCartas().size());
                     System.out.println("Rodada atual: " + rodada);
 
-                    boolean maoDoDealer = blackjack.Verificar_As(dealer.getMao());
+                    boolean maoDoDealer = blackjack.Verificar_As(dealer);
 
                     if (maoDoDealer) {
 
@@ -85,13 +85,13 @@ public class Jogo {
 
                         case 1: // Ação Hit
                             rodada++;
-                            System.out.println("Cartas atuais: " + player.getMao());
+                            System.out.println("Cartas atuais: " + player.getMaos());
                             System.out.println("Quantas cartas deseja comprar?");
                             int qntCartasCompradas = scanner.nextInt();
                             blackjack.Hit(player, qntCartasCompradas);
-                            System.out.println("Mão do jogador: " + player.getMao());
-                            System.out.println("Soma da mão do jogador: " + blackjack.Contar_mao(player.getMao()));
-                            if (blackjack.Contar_mao(player.getMao()) > 21) {
+                            System.out.println("Mãos do jogador: " + player.getMaos());
+                            System.out.println("Soma da mão do jogador: " + blackjack.Contar_mao(player.getMaos()));
+                            if (blackjack.Contar_mao(player) > 21) {
                                 System.out.println("Você perdeu!");
                                 iniciar = 2;
 
@@ -102,8 +102,8 @@ public class Jogo {
                         case 2: // Chamar Stand
                             rodada++;
                             System.out.println("Você passou a rodada!");
-                            System.out.println("Mão do jogador: " + player.getMao());
-                            System.out.println("Soma da mão do jogador: " + blackjack.Contar_mao(player.getMao()));
+                            System.out.println("Mãos do jogador: " + player.getMaos());
+                            System.out.println("Soma da mão do jogador: " + blackjack.Contar_mao(player));
                             break;
                         case 3: // Chamar double
                             if (rodada == 1) {
@@ -112,10 +112,10 @@ public class Jogo {
                                 System.out.println("Você dobra a aposta e compra uma carta.");
                                 qntCartasCompradas = 1;
                                 blackjack.Hit(player, qntCartasCompradas);
-                                System.out.println("Mão do jogador: " + player.getMao());
+                                System.out.println("Mão do jogador: " + player.getMaos());
                                 System.out.println("Saldo atual:" + player.getSaldo());
 
-                                if (blackjack.Contar_mao(player.getMao()) > 21) {
+                                if (blackjack.Contar_mao(player.getMaos()) > 21) {
                                     System.out.println("Você perdeu!");
                                     iniciar = 2;
                                 }
