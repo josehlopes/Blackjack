@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +17,9 @@ public class Blackjack {
         baralho.embaralhar();
     }
 
-    public void iniciarJogo(Jogador player, Jogador dealer) {
-        baralho.distribuir(player, 2);
-        baralho.distribuir(dealer, 2);
+    public void iniciarJogo(Jogador player, Jogador dealer, int indice) {
+        baralho.distribuir(player, 2, 0);
+        baralho.distribuir(dealer, 2, 0);
     }
 
     public Baralho getBaralho() {
@@ -49,17 +49,16 @@ public class Blackjack {
         return false;
     }
 
-    public int Contar_mao(Jogador jogador) { // Conta e retorna a quantidade de cartas da mão do jogador
-        List<List<Carta>> maosDoJogador;
-        int soma = 0;
-        for (int i = 0; i < maosDoJogador.size(); i++) {
-            List<Carta> mao = maosDoJogador.get(0);
-            Carta contar = mao.get(i);
-            soma += contar.getNumero().getValor();
-        }
-        return soma;
-    }
+    public int Contar_mao(Jogador jogador, int indice) {
+        List<List<Carta>> maosDoJogador = jogador.getMaos();
+        List<Carta> mao = maosDoJogador.get(indice);
 
+        int soma = 0;
+        for (Carta carta : mao) {
+            soma += carta.getNumero().getValor();
+        }
+
+        return soma;
     }
 
     public void Surrender(Jogador player) { // Recupera 50% da aposta antes de desistir
@@ -74,4 +73,23 @@ public class Blackjack {
         baralho.distribuir(j, quantidade, indice);
         System.out.println("Quantidade de cartas restantes: " + getBaralho().getCartas().size());
     }
+
+    public void Split(Jogador j, int indice) {
+        List<List<Carta>> maosDoJogador = j.getMaos();
+        List<Carta> mao = maosDoJogador.get(indice);
+        Carta carta1 = mao.get(0);
+        Carta carta2 = mao.get(1);
+
+        if (carta1.getNumero() == carta2.getNumero()) {
+            List<Carta> novaMao = new ArrayList<>();
+            novaMao.add(carta1);
+
+            mao.remove(0);
+
+            maosDoJogador.add(novaMao);
+        } else {
+            System.out.println("Não foi possível fazer o split");
+        }
+    }
+
 }

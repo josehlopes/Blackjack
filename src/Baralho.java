@@ -42,7 +42,10 @@ public class Baralho {
     }
 
     public void distribuir(Jogador j, int qtd, int indice) { // Manda a carta para mão do jogador e remove do baralho
-        List<List<Carta>> maosDoJogador;
+        List<List<Carta>> maosDoJogador = j.getMaos();
+        if (maosDoJogador.size() <= indice) {
+            maosDoJogador.add(new ArrayList<>());
+        }
         for (int i = 0; i < qtd; i++) {
             int carta = new Random().nextInt(cartas.size());
             Carta c = cartas.remove(carta);
