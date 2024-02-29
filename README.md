@@ -2,7 +2,7 @@
 
 **Blackjack em Java**
 
-Projeto de estudo em Java mentorizado pelo prof. Me.Ícaro Vasconcelos Alvim. Este projeto tem como objetivo a aprendizagem prática da linguagem Java, explorando a criação de um jogo de cartas clássico: o Blackjack.
+Projeto de estudo em Java mentorizado pelo Prof. Me.Ícaro Vasconcelos Alvim. Este projeto tem como objetivo a aprendizagem prática da linguagem Java, explorando a criação de um jogo de cartas clássico: o Blackjack.
 
 **Funcionalidades Principais:**
 
