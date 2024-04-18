@@ -1,16 +1,11 @@
-/**
- *
- * @author José Henrique
- * @guidance Ícaro
- * 
- */
+package _data;
 
-public class Carta { //Criando a classe carta
+public class Carta {
 
-    private Naipe naipe;  //Cada carta tem um naipe e um número
+    private Naipe naipe;
     private Numero numero;
     
-    public Carta (Naipe naipe, Numero numero) { //Construtor do objeto
+    public Carta (Naipe naipe, Numero numero) {
 
         this.naipe = naipe;
         this.numero = numero;

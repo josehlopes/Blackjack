@@ -1,5 +1,7 @@
+package _application;
 import java.util.ArrayList;
 import java.util.List;
+import _data.Carta;
 
 /**
  *
@@ -10,8 +12,8 @@ import java.util.List;
 
 public class Jogador {
 
-    private List<List<Carta>> maos; // Lista de cartas privada do jogador (Mão)
-    private float saldo; // Saldo de aposta do jogador
+    private List<List<Carta>> maos;
+    private float saldo;
 
     public Jogador(float valor) {
         this.maos = new ArrayList<>(); // Inicialize a lista mao com a lista passada como argumento
@@ -20,6 +22,14 @@ public class Jogador {
 
     public List<List<Carta>> getMaos() {
         return maos;
+    }
+
+    public List<Carta> getMao(int indice) {
+        if (indice >= 0 && indice < maos.size()) {
+            return maos.get(indice);
+        } else {
+            return null;
+        }
     }
 
     public float getSaldo() {

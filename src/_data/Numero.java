@@ -1,10 +1,4 @@
-/**
- *
- * @author José Henrique
- * @guidance Ícaro
- * 
- */
-
+package _data;
 
 public enum Numero {
 
